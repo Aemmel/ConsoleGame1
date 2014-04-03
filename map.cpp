@@ -245,7 +245,9 @@ bool map::EntityMovable(Player *entity)
 
 	//check corners:
 	if (PosEntY == 0 && PosEntX == 0){
-		bool B1, B2;	//These variables are responsible, to check if the fields are destroyed(each for one field), they are only valid in the respective if-statement
+		bool B1 = false;	//These variables are responsible, to check if the fields are destroyed(each for one field), they are only valid in the respective if-statement
+		bool B2 = false;
+
 		for (Uint it = 0; it<_DestroyedFieldsY.size() && it < _DestroyedFieldsX.size(); ++it){
 			if (PosEntY +1 == _DestroyedFieldsY[it] && PosEntX == _DestroyedFieldsX[it]){
 				B1 = true;
@@ -258,7 +260,9 @@ bool map::EntityMovable(Player *entity)
 			return false;
 	}
 	else if (PosEntY == 0 && PosEntX == WIDTH -1){
-		bool B1, B2;
+		bool B1 = false;
+		bool B2 = false;
+
 		for (Uint it = 0; it<_DestroyedFieldsY.size() && it < _DestroyedFieldsX.size(); ++it){
 			if(PosEntY +1 == _DestroyedFieldsY[it] && PosEntX == _DestroyedFieldsX[it]){
 				B1 = true;
@@ -271,7 +275,9 @@ bool map::EntityMovable(Player *entity)
 			return false;
 	}
 	else if (PosEntY == HEIGHT -1 && PosEntX == 0){
-		bool B1, B2;
+		bool B1 = false;
+		bool B2 = false;
+
 		for (Uint it = 0; it<_DestroyedFieldsY.size() && it < _DestroyedFieldsX.size(); ++it){
 			if(PosEntY -1 == _DestroyedFieldsY[it] && PosEntX == _DestroyedFieldsX[it]){
 				B1 = true;
@@ -284,7 +290,9 @@ bool map::EntityMovable(Player *entity)
 			return false;
 	}
 	else if (PosEntY == HEIGHT -1 && PosEntX == WIDTH -1){
-		bool B1, B2;
+		bool B1 = false;
+		bool B2 = false;
+
 		for (Uint it = 0; it<_DestroyedFieldsY.size() && it < _DestroyedFieldsX.size(); ++it){
 			if(PosEntY -1 == _DestroyedFieldsY[it] && PosEntX == _DestroyedFieldsX[it]){
 				B1 = true;
@@ -299,7 +307,10 @@ bool map::EntityMovable(Player *entity)
 
 	//check borders:
 	else if (PosEntY == 0){
-		bool B1, B2, B3;
+		bool B1 = false;
+		bool B2 = false;
+		bool B3 = false;
+
 		for (Uint it = 0; it<_DestroyedFieldsY.size() && it < _DestroyedFieldsX.size(); ++it){
 			if(PosEntY +1 == _DestroyedFieldsY[it] && PosEntX == _DestroyedFieldsX[it]){
 				B1 = true;	
@@ -315,7 +326,10 @@ bool map::EntityMovable(Player *entity)
 			return false;
 	}
 	else if (PosEntY == HEIGHT -1){
-		bool B1, B2, B3;
+		bool B1 = false;
+		bool B2 = false;
+		bool B3 = false;
+
 		for (Uint it = 0; it<_DestroyedFieldsY.size() && it < _DestroyedFieldsX.size(); ++it){
 			if(PosEntY -1 == _DestroyedFieldsY[it] && PosEntX == _DestroyedFieldsX[it]){
 				B1 = true;
@@ -331,7 +345,9 @@ bool map::EntityMovable(Player *entity)
 			return false;
 	}
 	else if (PosEntX == 0){
-		bool B1, B2, B3;
+		bool B1 = false;
+		bool B2 = false;
+		bool B3 = false;
 		for (Uint it = 0; it<_DestroyedFieldsY.size() && it < _DestroyedFieldsX.size(); ++it){
 			if(PosEntY -1 == _DestroyedFieldsY[it] && PosEntX == _DestroyedFieldsX[it]){
 				B1 = true;
@@ -347,7 +363,10 @@ bool map::EntityMovable(Player *entity)
 			return false;
 	}
 	else if (PosEntX == WIDTH -1){
-		bool B1, B2, B3;
+		bool B1 = false;
+		bool B2 = false;
+		bool B3 = false;
+
 		for (Uint it = 0; it<_DestroyedFieldsY.size() && it < _DestroyedFieldsX.size(); ++it){
 			if(PosEntY -1 == _DestroyedFieldsY[it] && PosEntX == _DestroyedFieldsX[it]){
 				B1 = true;
@@ -364,7 +383,11 @@ bool map::EntityMovable(Player *entity)
 	}
 	//check middle:
 	else {
-		bool B1, B2, B3, B4;
+		bool B1 = false;
+		bool B2 = false;
+		bool B3 = false;
+		bool B4 = false; 
+
 		for (Uint it = 0; it<_DestroyedFieldsY.size() && it < _DestroyedFieldsX.size(); ++it){
 			if(PosEntY -1 == _DestroyedFieldsY[it] && PosEntX == _DestroyedFieldsX[it]){
 				B1 = true;
@@ -382,6 +405,7 @@ bool map::EntityMovable(Player *entity)
 		if (B1 && B2 && B3 && B4)
 			return false;
 	}
+
 
 	return true;
 }
