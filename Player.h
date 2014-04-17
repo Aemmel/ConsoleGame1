@@ -1,8 +1,8 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-static const int WIDTH = 30;
-static const int HEIGHT = 20;
+static const int WIDTH = 15;
+static const int HEIGHT = 10;
 
 class Player
 {
