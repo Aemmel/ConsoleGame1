@@ -1,5 +1,5 @@
-#ifndef MAP_H
-#define MAP_H
+#ifndef FIELD_H
+#define FIELD_H
 
 #include "Player.h"
 #include <iostream>
@@ -11,29 +11,32 @@
 
 typedef unsigned int Uint;
 
-class map
+struct Entity {
+	std::vector<int> X;
+	std::vector<int> Y;
+};
+
+class Field
 {
 public:
-	map();
+	Field();
 
 	void DrawMap(Player *grenade, int moves);
 
-	bool MovePlayer(Player *player);
-	bool MoveGrenade(Player *grenade);
+	bool MovePlayer(Player *player, int Key);
+	bool MoveGrenade(Player *grenade, int Key);
 	bool EntityMovable(Player *entity);
-	bool Enemy(int moves);
+	bool Enemy(int moves, bool spread);
 
 private:
 	char _map[HEIGHT][WIDTH];
 	int _moves;
 
 	/*save all destroyed Fields here: */
-	std::vector<int>_DestroyedFieldsX;
-	std::vector<int>_DestroyedFieldsY;
+	Entity _DestroyedFields;
 
 	/*save all fields taken by the enemy here: */
-	std::vector<int>_EnemysX;
-	std::vector<int>_EnemysY;
+	Entity _Enemys;
 
 	/*Fields: */
 	char _Player;
@@ -41,6 +44,8 @@ private:
 	char _DestroyedField;
 	char _Field;
 	char _Enemy;
+
+	bool _erase;
 };
 
 #endif
