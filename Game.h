@@ -13,6 +13,7 @@ public:
 	void GameRules();
 	int GameLoop();
 	int GetKey();
+	bool restart(bool game_won);
 
 private:
 	Player *_player;
