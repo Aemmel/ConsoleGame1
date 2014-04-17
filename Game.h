@@ -1,9 +1,9 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "map.h"
+#include "Field.h"
 
-class Game : public map
+class Game : public Field
 {
 public:
 	Game();
@@ -12,6 +12,7 @@ public:
 	void Initialize();
 	void GameRules();
 	int GameLoop();
+	int GetKey();
 
 private:
 	Player *_player;
