@@ -1,3 +1,5 @@
+DOWNLOAD: https://github.com/Aemmel/ConsoleGame1/releases
+
 Instructions for the game:
 
 Figures/Chars:
