@@ -30,19 +30,16 @@ void Game::GameRules()
 {
 	int Key = GetKey();
 
-	if (_moves_round == 3){
+	if (_moves_round == 5){
 		_moves_round = 0;
 	}
 
 	MovePlayer(_player, Key);
-	std::cout << "X-Cor Pl: " << _player->get_X_Cor() << "\nY-Cor Pl: " << _player->get_Y_Cor() << std::endl;
-
 
 	MoveGrenade(_grenade, Key);
-	std::cout << "X-Cor Gr: " << _grenade->get_X_Cor() << "\nY-Cor Gr: " << _grenade->get_Y_Cor() << std::endl;
 
-	if (EntityMovable(_player))
-		std::cout << "Movable\n";
+	if (!EntityMovable(_player))
+		_game_over = true;
 
 	if (_moves_round == 0){
 		if (!Enemy(_moves_total, true)){
@@ -56,7 +53,7 @@ void Game::GameRules()
 	}
 }
 
-int Game::GameLoop()
+void Game::GameLoop()
 {
 	Initialize();
 
@@ -79,16 +76,20 @@ int Game::GameLoop()
 	
 	if(_game_over){
 		std::cout << "\t\tGAME OVER! :-(\n\n";
-		restart(true);
+		if (restart(false)){
+			_game_over = false;
+			resetGame(&_moves_total, &_moves_round);
+			GameLoop();
+		}
 	}
 	if(_game_won){
 		std::cout << "\t\tGAME WON! :-)\n\n";
-		restart(false);
+		if (restart(true)){
+			_game_won = false;
+			resetGame(&_moves_total, &_moves_round);
+			GameLoop();
+		}
 	}
-
-	system("pause");
-
-	return 0;
 }
 
 int Game::GetKey()
@@ -115,7 +116,7 @@ int Game::GetKey()
 	return 0;
 }
 
-bool restart(bool game_won)
+bool Game::restart(bool game_won)
 {
 	char pre = '>';
 	char suf = '<';
