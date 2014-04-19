@@ -9,11 +9,9 @@
 
 #pragma comment (lib, "winmm.lib")
 
-typedef unsigned int Uint;
-
 struct Entity {
-	std::vector<int> X;
-	std::vector<int> Y;
+	int X;
+	int Y;
 };
 
 class Field
@@ -27,16 +25,17 @@ public:
 	bool MoveGrenade(Player *grenade, int Key);
 	bool EntityMovable(Player *entity);
 	bool Enemy(int moves, bool spread);
+	void resetGame(int *movesT, int *movesR);
 
 private:
 	char _map[HEIGHT][WIDTH];
 	int _moves;
 
 	/*save all destroyed Fields here: */
-	Entity _DestroyedFields;
+	std::vector<Entity> _DestroyedFields;
 
 	/*save all fields taken by the enemy here: */
-	Entity _Enemys;
+	std::vector<Entity> _Enemys;
 
 	/*Fields: */
 	char _Player;
